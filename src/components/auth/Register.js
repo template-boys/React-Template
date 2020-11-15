@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import UserContext from "../../context/UserContext";
-import Axios from "axios";
-import ErrorNotice from "../misc/ErrorNotice";
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import UserContext from '../../context/userContext';
+import Axios from 'axios';
+import ErrorNotice from '../misc/ErrorNotice';
 
 export default function Register() {
   const [email, setEmail] = useState();
@@ -18,18 +18,21 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const newUser = { email, password, passwordCheck, displayName };
-      await Axios.post("http://localhost:5000/users/register", newUser);
-      const loginRes = await Axios.post("http://localhost:5000/users/login", {
-        email,
-        password,
-      });
+      const newUser = { email, password, name: displayName };
+      await Axios.post('http://localhost:5000/api/users/register', newUser);
+      const loginRes = await Axios.post(
+        'http://localhost:5000/api/users/login',
+        {
+          email,
+          password,
+        }
+      );
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
       });
-      localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      localStorage.setItem('auth-token', loginRes.data.token);
+      history.push('/');
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
@@ -68,7 +71,7 @@ export default function Register() {
           onChange={(e) => setDisplayName(e.target.value)}
         />
 
-        <input type="submit" value="Register" />
+        <input type="submit" value="Register" className="primaryButton" />
       </form>
     </div>
   );

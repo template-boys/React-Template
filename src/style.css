@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 /* reset */
 
@@ -19,10 +19,10 @@ ul {
 }
 
 button,
-input[type="submit"] {
+input[type='submit'] {
   border: none;
   background: none;
-  color: unset;
+  color: '#f3f3f3';
   cursor: pointer;
 }
 
@@ -43,7 +43,7 @@ li {
 /* general */
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .page {
@@ -62,12 +62,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e02525;
+  background-color: #f3f3f3;
 }
 #header .title {
   margin: 0;
   padding: 0 1rem;
-  color: #ffffff;
+  color: #3490dc;
 }
 #header .auth-options {
   height: 100%;
@@ -75,12 +75,12 @@ body {
 }
 #header .auth-options button {
   padding: 0 1rem;
-  background-color: #b91b1b;
-  color: #ffffff;
+  background-color: #f3f3f3;
+  color: #3490dc;
   font-size: 1.1rem;
 }
 #header .auth-options button:hover {
-  background-color: #be3a3a;
+  background-color: #d3d3d3;
 }
 
 /* form */
@@ -95,9 +95,9 @@ body {
 .form label {
   margin-bottom: 0.2rem;
 }
-.form input[type="text"],
-.form input[type="email"],
-.form input[type="password"] {
+.form input[type='text'],
+.form input[type='email'],
+.form input[type='password'] {
   width: 100%;
   padding: 0.3rem;
   border: 1px solid #c2c2c2;
@@ -110,12 +110,13 @@ body {
   box-shadow: inset 0px 0px 5px rgba(38, 142, 228, 0.5);
   outline: none;
 }
-.form input[type="submit"] {
+.form input[type='submit'] {
   padding: 0.3rem 0.5rem;
-  border: 1px solid #6aa051;
-  border-radius: 8px;
-  background-color: #c8ecb7;
+  /* border: 1px solid #38c172;
+  border-radius: 8px; */
+  background-color: #38c172;
   font-size: 1.1rem;
+  color: 'white';
 }
 
 /* todo list */
@@ -147,6 +148,10 @@ body {
   border-radius: 50%;
   background-color: #df4343;
   color: #ffffff;
+}
+
+.primaryButton {
+  color: #f3f3f3;
 }
 
 /* media queries */
