@@ -1,25 +1,23 @@
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import UserContext from '../../context/userContext';
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import UserContext from "../../context/userContext";
 
 export default function AuthOptions() {
-  const { userData, setUserData } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const history = useHistory();
 
-  const register = () => history.push('/register');
-  const login = () => history.push('/login');
+  const register = () => history.push("/register");
+  const login = () => history.push("/login");
   const logout = () => {
-    setUserData({
-      token: undefined,
-      user: undefined,
-    });
-    localStorage.setItem('auth-token', '');
+    setUser(null);
+    localStorage.setItem("auth-token", "");
+    history.push("/login");
   };
 
   return (
     <nav className="auth-options">
-      {userData.user ? (
+      {user ? (
         <button onClick={logout}>Log out</button>
       ) : (
         <>
