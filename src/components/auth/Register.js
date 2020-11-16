@@ -27,7 +27,7 @@ export default function Register() {
           password,
         }
       );
-      setUser(loginRes.data.user);
+      setUser(loginRes?.data?.user);
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/");
     } catch (err) {
