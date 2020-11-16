@@ -11,7 +11,8 @@ export default function UserVerified() {
     const verifyUser = async () => {
       const verifyRes = await Axios.post(
         "http://localhost:5000/api/users/verify_user",
-        { token: slug }
+        null,
+        { headers: { "x-auth-token": slug } }
       );
       setUserVerified(!!verifyRes?.data?.verified);
     };
