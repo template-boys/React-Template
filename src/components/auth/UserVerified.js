@@ -1,6 +1,6 @@
-import Axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function UserVerified() {
   const [userVerified, setUserVerified] = useState(false);
@@ -10,9 +10,9 @@ export default function UserVerified() {
     console.log(slug);
     const verifyUser = async () => {
       const verifyRes = await Axios.post(
-        "http://localhost:5000/api/users/verify_user",
+        'http://localhost:5000/api/users/verify_user',
         null,
-        { headers: { "x-auth-token": slug } }
+        { headers: { 'x-auth-token': slug } }
       );
       setUserVerified(!!verifyRes?.data?.verified);
     };

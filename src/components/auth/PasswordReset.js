@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export default function PasswordReset() {
   const [email, setEmail] = useState();
@@ -32,34 +32,34 @@ export default function PasswordReset() {
           <h2>Password reset email sent!</h2>
           <p>Check your email for a link to reset your password</p>
           <hr></hr>
-          <form className="form" onSubmit={sendPasswordResetEmail}>
+          <form className='form' onSubmit={sendPasswordResetEmail}>
             <p>
               If it doesn't appear within a few minutes, check your spam folder
             </p>
             <h4>or</h4>
             <input
-              type="submit"
-              value="Send email again"
-              className="primaryButton"
+              type='submit'
+              value='Send email again'
+              className='primaryButton'
             />
           </form>
         </>
       ) : (
         <>
           <h2>Reset your password</h2>
-          <form className="form" onSubmit={sendPasswordResetEmail}>
-            <label htmlFor="login-email">Your account's verified email</label>
+          <form className='form' onSubmit={sendPasswordResetEmail}>
+            <label htmlFor='login-email'>Your account's verified email</label>
             <input
-              id="login-email"
-              type="email"
-              placeholder="Enter your email address"
+              id='login-email'
+              type='email'
+              placeholder='Enter your email address'
               onChange={(e) => setEmail(e.target.value)}
             />
 
             <input
-              type="submit"
-              value="Send password reset email"
-              className="primaryButton"
+              type='submit'
+              value='Send password reset email'
+              className='primaryButton'
             />
           </form>
         </>
