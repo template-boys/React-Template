@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { Route, useHistory } from "react-router-dom";
-import userContext from "../../context/userContext";
+import React, { useContext, useEffect } from 'react';
+import { Route, useHistory } from 'react-router-dom';
+import userContext from '../../context/userContext';
 
 export default function PublicRoute({ path, component }) {
   const history = useHistory();
@@ -8,7 +8,7 @@ export default function PublicRoute({ path, component }) {
 
   useEffect(() => {
     if (!!user) {
-      history.push("/");
+      history.push('/');
     }
   }, [history, user]);
 
