@@ -7,16 +7,22 @@ export default function UserVerified() {
   const { slug } = useParams();
 
   useEffect(() => {
-    console.log(slug);
+    localStorage.setItem('auth-token', '');
     const verifyUser = async () => {
-      const verifyRes = await Axios.post(
-        'http://localhost:5000/api/users/verify_user',
-        null,
-        { headers: { 'x-auth-token': slug } }
-      );
-      setUserVerified(!!verifyRes?.data?.verified);
+      try {
+        const verifyRes = await Axios.post(
+          'http://localhost:5000/api/users/verify_user',
+          null,
+          { headers: { 'x-auth-token': slug } }
+        );
+        setUserVerified(!!verifyRes?.data?.verified);
+      } catch (e) {
+        console.log(JSON.stringify(e));
+      }
     };
     verifyUser();
+
+    return;
   }, [slug]);
 
   return (

@@ -37,7 +37,7 @@ export default function App() {
             <PrivateRoute exact path='/' component={Home} />
             <PublicRoute path='/login' component={Login} />
             <PublicRoute path='/register' component={Register} />
-            <PublicRoute path='/user_verified/:slug' component={UserVerified} />
+            <Route path='/user_verified/:slug' component={UserVerified} />
             <Route path='/password_reset' component={PasswordReset} />
           </Switch>
         </div>
