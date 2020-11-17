@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import UserContext from "../../context/userContext";
-import Axios from "axios";
-import ErrorNotice from "../misc/ErrorNotice";
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import UserContext from '../../context/userContext';
+import Axios from 'axios';
+import ErrorNotice from '../misc/ErrorNotice';
 
 export default function Register() {
   const [email, setEmail] = useState();
@@ -19,19 +19,22 @@ export default function Register() {
 
     try {
       const newUser = { email, password, name: displayName };
-      await Axios.post("http://localhost:5000/api/users/register", newUser);
+      await Axios.post('http://localhost:5000/api/users/register', newUser);
       const loginRes = await Axios.post(
-        "http://localhost:5000/api/users/login",
+        'http://localhost:5000/api/users/login',
         {
           email,
           password,
         }
       );
       setUser(loginRes?.data?.user);
-      localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      localStorage.setItem('auth-token', loginRes.data.token);
+      history.push('/');
     } catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
+      const errorMessage =
+        err?.response?.data?.msg ??
+        'Sorry, something went wrong. Please try again later.';
+      setError(errorMessage);
     }
   };
 
