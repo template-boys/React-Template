@@ -7,7 +7,7 @@ export default function PublicRoute({ path, component }) {
   const user = useSelector((state) => state.userReducer.user);
 
   useEffect(() => {
-    if (user?.name) {
+    if (user?.isLoggedIn) {
       history.push('/');
     }
   }, [history, user]);

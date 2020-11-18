@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/userContext';
 import Axios from 'axios';
 import ErrorNotice from '../misc/ErrorNotice';
+import { setUser } from '../../redux/User/user.actions';
+import { useDispatch } from 'react-redux';
 
 export default function Register() {
   const [email, setEmail] = useState();
@@ -11,7 +13,7 @@ export default function Register() {
   const [displayName, setDisplayName] = useState();
   const [error, setError] = useState();
 
-  const { setUser } = useContext(UserContext);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const submit = async (e) => {
@@ -27,7 +29,7 @@ export default function Register() {
           password,
         }
       );
-      setUser(loginRes?.data?.user);
+      dispatch(setUser(loginRes?.data?.user));
       localStorage.setItem('auth-token', loginRes.data.token);
       history.push('/');
     } catch (err) {
