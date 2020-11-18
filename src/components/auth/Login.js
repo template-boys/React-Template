@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginUser } from '../../redux/User/user.actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ErrorNotice from '../misc/ErrorNotice';
 
 export default function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState();
+
+  const userReducer = useSelector((state) => state.userReducer);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -25,6 +27,7 @@ export default function Login() {
       setError(errorMessage);
     }
   };
+
   return (
     <div className='page'>
       <h2>Welcome Back</h2>
@@ -48,7 +51,11 @@ export default function Login() {
 
         <Link to='/password_reset'>Forgotten Password</Link>
 
-        <input type='submit' value='Log in' className='primaryButton' />
+        {userReducer.isLoginLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <input type='submit' value='Log in' className='primaryButton' />
+        )}
       </form>
     </div>
   );
