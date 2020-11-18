@@ -19,9 +19,10 @@ export function loginUser(loginBody) {
         .post('http://localhost:5000/api/users/login', loginBody)
         .then((res) => res.data);
       localStorage.setItem('auth-token', response.token);
-      return dispatch(setUser(response.user));
+      dispatch(setUser(response.user));
     } catch (e) {
       dispatch(setLoginError());
     }
+    return;
   };
 }

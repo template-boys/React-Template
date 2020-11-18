@@ -9,7 +9,7 @@ export default function Login() {
   const [password, setPassword] = useState();
   const [error, setError] = useState();
 
-  const userReducer = useSelector((state) => state.userReducer);
+  const { isLoginLoading } = useSelector((state) => state.userReducer);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const userBody = { email, password };
-      await dispatch(loginUser(userBody));
+      dispatch(loginUser(userBody));
       history.push('/');
     } catch (err) {
       const errorMessage =
@@ -51,7 +51,7 @@ export default function Login() {
 
         <Link to='/password_reset'>Forgotten Password</Link>
 
-        {userReducer.isLoginLoading ? (
+        {isLoginLoading ? (
           <div>Loading...</div>
         ) : (
           <input type='submit' value='Log in' className='primaryButton' />
