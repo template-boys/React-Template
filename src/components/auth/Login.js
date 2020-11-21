@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import UserContext from '../../context/userContext';
-import Axios from 'axios';
+import { loginUser } from '../../redux/User/user.actions';
+import { useDispatch, useSelector } from 'react-redux';
 import ErrorNotice from '../misc/ErrorNotice';
 
 export default function Login() {
@@ -9,19 +9,16 @@ export default function Login() {
   const [password, setPassword] = useState();
   const [error, setError] = useState();
 
-  const { setUser } = useContext(UserContext);
+  const { isLoginLoading } = useSelector((state) => state.userReducer);
+
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const loginUser = { email, password };
-      const loginRes = await Axios.post(
-        'http://localhost:5000/api/users/login',
-        loginUser
-      );
-      setUser(loginRes.data.user);
-      localStorage.setItem('auth-token', loginRes.data.token);
+      const userBody = { email, password };
+      dispatch(loginUser(userBody));
       history.push('/');
     } catch (err) {
       const errorMessage =
@@ -30,6 +27,7 @@ export default function Login() {
       setError(errorMessage);
     }
   };
+
   return (
     <div className='page'>
       <h2>Welcome Back</h2>
@@ -53,7 +51,11 @@ export default function Login() {
 
         <Link to='/password_reset'>Forgotten Password</Link>
 
-        <input type='submit' value='Log in' className='primaryButton' />
+        {isLoginLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <input type='submit' value='Log in' className='primaryButton' />
+        )}
       </form>
     </div>
   );

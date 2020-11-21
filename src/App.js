@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 
 import Header from './components/layout/Header';
@@ -6,42 +6,41 @@ import Home from './components/pages/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import PasswordReset from './components/auth/PasswordReset';
-import UserContext from './context/userContext';
 import * as authUtil from './components/auth/authUtil';
+import { setUser } from './redux/User/user.actions';
 
 import './style.css';
 import UserVerified from './components/auth/UserVerified';
 import PrivateRoute from './components/auth/PrivateRoute';
 import PublicRoute from './components/auth/PublicRoute';
+import { useDispatch } from 'react-redux';
 
 export default function App() {
   const history = useHistory();
-  const [user, setUser] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const checkLoggedIn = async () => {
       const user = await authUtil.checkForLogin();
       if (!!user) {
-        setUser(user);
+        dispatch(setUser(user));
       }
     };
     checkLoggedIn();
-  }, [history]);
+  }, [history, dispatch]);
 
   return (
     <>
-      <UserContext.Provider value={{ user, setUser }}>
-        <Header />
-        <div className='container'>
-          <Switch>
-            <PrivateRoute exact path='/' component={Home} />
-            <PublicRoute path='/login' component={Login} />
-            <PublicRoute path='/register' component={Register} />
-            <Route path='/user_verified/:slug' component={UserVerified} />
-            <Route path='/password_reset' component={PasswordReset} />
-          </Switch>
-        </div>
-      </UserContext.Provider>
+      <Header />
+      <div className='container'>
+        <Switch>
+          <PrivateRoute exact path='/' component={Home} />
+          <PublicRoute path='/login' component={Login} />
+          <PublicRoute path='/register' component={Register} />
+          <Route path='/user_verified/:slug' component={UserVerified} />
+          <Route path='/password_reset' component={PasswordReset} />
+        </Switch>
+      </div>
     </>
   );
 }
