@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Route, useHistory } from 'react-router-dom';
-import userContext from '../../context/userContext';
 
 export default function PublicRoute({ path, component }) {
   const history = useHistory();
-  const { user } = useContext(userContext);
+  const user = useSelector((state) => state.userReducer.user);
 
   useEffect(() => {
-    if (!!user) {
+    if (user?.isLoggedIn) {
       history.push('/');
     }
   }, [history, user]);

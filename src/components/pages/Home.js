@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import UserContext from '../../context/userContext';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
-  const { user } = useContext(UserContext);
+  const user = useSelector((state) => state.userReducer.user);
   return (
     <div className='page'>
       <h1>Welcome {user?.name ?? ''}</h1>

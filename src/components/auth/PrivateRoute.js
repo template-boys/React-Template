@@ -1,10 +1,10 @@
-import React, { useEffect, useContext } from 'react';
-import UserContext from '../../context/userContext';
+import React, { useEffect } from 'react';
 import { Route, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function PrivateRoute({ exact, path, component }) {
   const history = useHistory();
-  const { user } = useContext(UserContext);
+  const user = useSelector((state) => state.userReducer.user);
 
   useEffect(() => {
     if (!user) {

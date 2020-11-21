@@ -1,23 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import UserContext from '../../context/userContext';
+import { logoutUser } from '../../redux/User/user.actions';
 
 export default function AuthOptions() {
-  const { user, setUser } = useContext(UserContext);
-
   const history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
 
   const register = () => history.push('/register');
   const login = () => history.push('/login');
   const logout = () => {
-    setUser(null);
+    dispatch(logoutUser());
     localStorage.setItem('auth-token', '');
     history.push('/login');
   };
 
   return (
     <nav className='auth-options'>
-      {user ? (
+      {user?.isLoggedIn ? (
         <button onClick={logout}>Log out</button>
       ) : (
         <>
