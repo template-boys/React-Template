@@ -1,0 +1,50 @@
+@import '../../scss/colors';
+@import '../../scss/mixins';
+@import '../../scss/breakpoints';
+
+.login-page {
+  .logo > path {
+    fill: 'white';
+  }
+  display: flex;
+  flex-direction: row;
+
+  @media only screen and (max-width: $large) {
+    flex-direction: column;
+  }
+  @media only screen and (min-width: $large) {
+    height: 100vh;
+  }
+
+  & .page-item {
+    padding: 5%;
+    @media only screen and (max-width: $large) {
+      @include theme-aware('background', 'color-background');
+      @include theme-aware('color', 'primary-text');
+    }
+    @media screen and (min-width: $large) {
+      padding: 10%;
+      color: #fafafa;
+    }
+  }
+
+  & .page-space {
+    @include theme-aware('background', 'primary');
+    @media only screen and (max-width: $large) {
+      @include theme-aware('background', 'color-background');
+      height: 100%;
+    }
+
+    @media only screen and (min-width: $large) {
+      height: 100vh;
+    }
+  }
+  & .page-form {
+    flex: 2;
+  }
+
+  .page-title {
+    font-size: 40px;
+    font-weight: bold;
+  }
+}
