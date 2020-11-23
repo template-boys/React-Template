@@ -13,7 +13,7 @@ export default function UserVerified() {
         const verifyRes = await Axios.post(
           'http://localhost:5000/api/users/verify_user',
           null,
-          { headers: { 'x-auth-token': slug } }
+          { headers: { 'verification-token': slug } }
         );
         setUserVerified(!!verifyRes?.data?.verified);
       } catch (e) {
