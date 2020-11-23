@@ -1,0 +1,25 @@
+#header {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f3f3;
+}
+#header .title {
+  margin: 0;
+  padding: 0 1rem;
+  color: #3490dc;
+}
+#header .auth-options {
+  height: 100%;
+  display: flex;
+}
+#header .auth-options button {
+  padding: 0 1rem;
+  background-color: #f3f3f3;
+  color: #3490dc;
+  font-size: 1.1rem;
+}
+#header .auth-options button:hover {
+  background-color: #d3d3d3;
+}

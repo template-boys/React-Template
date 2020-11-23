@@ -12,9 +12,9 @@ export default function PrivateRoute({ exact, path, component }) {
     }
   }, [history, user]);
 
-  return (
+  return !!user ? (
     <div>
       <Route exact={exact} path={path} component={component} />
     </div>
-  );
+  ) : null;
 }
