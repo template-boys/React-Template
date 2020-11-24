@@ -5,6 +5,7 @@ import Header from './components/common/header/Header';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
+import NotFound from './components/pages/NotFound';
 import PasswordReset from './components/auth/PasswordReset';
 import * as authUtil from './components/auth/utils/authUtils';
 import { setUser } from './redux/User/user.actions';
@@ -39,6 +40,7 @@ export default function App() {
         <PublicRoute path='/register' component={Register} />
         <Route path='/user_verified/:slug' component={UserVerified} />
         <Route path='/password_reset' component={PasswordReset} />
+        <PrivateRoute component={NotFound} />
       </Switch>
     </>
   );
