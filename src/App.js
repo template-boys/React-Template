@@ -8,7 +8,7 @@ import Register from './components/pages/Register';
 import PasswordReset from './components/auth/PasswordReset';
 import * as authUtil from './components/auth/utils/authUtils';
 import { setUser } from './redux/User/user.actions';
-
+import { toggleTheme } from './redux/Settings/settings.actions';
 import './style.scss';
 import UserVerified from './components/pages/UserVerified';
 import PrivateRoute from './components/auth/PrivateRoute';
@@ -20,7 +20,11 @@ export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.documentElement.classList.add(`theme-light`);
+    //set theme from local storage or default to light
+    let theme = localStorage.getItem('theme');
+    dispatch(toggleTheme(!theme ? 'light' : theme));
+
+    //ping for user auth
     const checkLoggedIn = async () => {
       const user = await authUtil.checkForLogin();
       if (!!user) {

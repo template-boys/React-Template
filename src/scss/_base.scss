@@ -16,12 +16,37 @@ ul {
   list-style: none;
 }
 
-button,
-input[type='submit'] {
+.primary-button {
   border: none;
   background: none;
-  color: '#f3f3f3';
+  color: #f3f3f3;
   cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  background-color: #475ac6;
+  min-width: 100px;
+  font-size: 1.1rem;
+  &:hover {
+    color: #d6d6d6;
+  }
+}
+
+.secondary-button {
+  @include theme-aware('color', 'primary-text');
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border: 2px solid #475ac6;
+  border-radius: 6px;
+  background-color: transparent;
+  min-width: 100px;
+  font-size: 1.1rem;
+
+  outline: none;
+  box-shadow: none;
+
+  &:hover {
+    @include theme-aware('background-color', 'secondary-button-hover');
+  }
 }
 
 h1,
@@ -66,22 +91,12 @@ body {
 .form input[type='email'],
 .form input[type='password'] {
   width: 100%;
-  padding: 0.3rem;
+  padding: 0.5rem;
   border: 1px solid #c2c2c2;
   border-radius: 2px;
   background-color: #f0f0f0;
   font-size: 1.1rem;
 }
 .form input:focus {
-  border: 1px solid #50a4e9;
-  box-shadow: inset 0px 0px 5px rgba(38, 142, 228, 0.5);
   outline: none;
-}
-.form input[type='submit'] {
-  padding: 0.3rem 0.5rem;
-  /* border: 1px solid #38c172;
-  border-radius: 8px; */
-  background-color: #38c172;
-  font-size: 1.1rem;
-  color: 'white';
 }

@@ -16,12 +16,12 @@ export default function Login() {
         </div>
         <LoginForm />
         <button
-          className='primaryButton'
+          className='secondary-button'
           onClick={() => {
             dispatch(toggleTheme());
           }}
         >
-          Toggle Theme
+          <div>Toggle Theme</div>
         </button>
       </div>
     </div>
