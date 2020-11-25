@@ -23,6 +23,5 @@ export function loginUser(loginBody) {
     } catch (e) {
       dispatch(setLoginError());
     }
-    return;
   };
 }

@@ -55,7 +55,7 @@ export default function Register() {
       <input
         type='password'
         placeholder='Verify password'
-        //onChange={(e) => setPasswordCheck(e.target.value)}
+        // onChange={(e) => setPasswordCheck(e.target.value)}
       />
 
       <label htmlFor='register-display-name'>Display name</label>
