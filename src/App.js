@@ -13,7 +13,7 @@ import {
 import PasswordReset from './components/auth/PasswordReset';
 import { toggleTheme } from './redux/Settings/settings.actions';
 import AuthorizedRoute from './components/auth/AuthorizedRoute';
-import UnauthorizedRoute from './components/auth/UnauthorizedRoute';
+import PurePublicRoute from './components/auth/PurePublicRoute';
 import './style.scss';
 
 export default function App() {
@@ -29,7 +29,7 @@ export default function App() {
       <Header />
       <Switch>
         <AuthorizedRoute exact path='/' component={Home} />
-        <UnauthorizedRoute path='/login' component={Login} />
+        <PurePublicRoute path='/login' component={Login} />
         <AuthorizedRoute path='/register' component={Register} />
         <Route path='/user_verified/:slug' component={UserVerified} />
         <Route path='/password_reset' component={PasswordReset} />

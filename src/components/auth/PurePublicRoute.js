@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route, useHistory } from 'react-router-dom';
 import { authPing } from '../../redux/User/user.actions';
 
-export default function UnauthorizedRoute({ path, component, location }) {
+export default function PurePublicRoute({ path, component, location }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
