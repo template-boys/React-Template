@@ -12,8 +12,8 @@ import {
 } from './components/pages/index';
 import PasswordReset from './components/auth/PasswordReset';
 import { toggleTheme } from './redux/Settings/settings.actions';
-import PrivateRoute from './components/auth/PrivateRoute';
-import PublicRoute from './components/auth/PublicRoute';
+import AuthorizedRoute from './components/auth/AuthorizedRoute';
+import UnauthorizedRoute from './components/auth/UnauthorizedRoute';
 import './style.scss';
 
 export default function App() {
@@ -28,12 +28,12 @@ export default function App() {
     <>
       <Header />
       <Switch>
-        <PrivateRoute exact path='/' component={Home} />
-        <PublicRoute path='/login' component={Login} />
-        <PublicRoute path='/register' component={Register} />
+        <AuthorizedRoute exact path='/' component={Home} />
+        <UnauthorizedRoute path='/login' component={Login} />
+        <AuthorizedRoute path='/register' component={Register} />
         <Route path='/user_verified/:slug' component={UserVerified} />
         <Route path='/password_reset' component={PasswordReset} />
-        <PrivateRoute component={NotFound} />
+        <Route component={NotFound} />
       </Switch>
     </>
   );

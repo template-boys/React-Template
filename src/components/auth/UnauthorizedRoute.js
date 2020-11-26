@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { Redirect, Route, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, Route, useHistory } from 'react-router-dom';
 import { checkForLogin } from '../../redux/User/user.actions';
 
-export default function PrivateRoute({ exact, path, component }) {
+export default function UnauthorizedRoute({ path, component, location }) {
   const history = useHistory();
-  const user = useSelector((state) => state.userReducer.user);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -17,16 +17,13 @@ export default function PrivateRoute({ exact, path, component }) {
     checkLoggedIn();
   }, [history, dispatch, user]);
 
-  return !!user ? (
-    <div>
-      <Route exact={exact} path={path} component={component} />
-    </div>
+  const { from } = location.state || { from: { pathname: '/' } };
+
+  return user ? (
+    <Redirect to={from} />
   ) : (
-    <Redirect
-      to={{
-        pathname: '/login',
-        state: { from: history?.location?.pathname || '/' },
-      }}
-    />
+    <div>
+      <Route path={path} component={component} />
+    </div>
   );
 }
