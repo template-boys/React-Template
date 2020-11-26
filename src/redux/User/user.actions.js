@@ -26,3 +26,26 @@ export function loginUser(loginBody) {
     return;
   };
 }
+
+export function checkForLogin() {
+  return async (dispatch) => {
+    let token = localStorage.getItem('auth-token');
+    if (token === null) {
+      localStorage.setItem('auth-token', '');
+      token = '';
+    }
+    let response;
+    try {
+      response = await axios.post(
+        'http://localhost:5000/api/users/ping',
+        null,
+        { headers: { 'x-auth-token': token } }
+      );
+    } catch (error) {}
+    if (response) {
+      dispatch(setUser(response?.data?.user));
+    } else {
+      dispatch(logoutUser());
+    }
+  };
+}

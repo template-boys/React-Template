@@ -1,18 +1,27 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Route, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, Route, useHistory } from 'react-router-dom';
+import { checkForLogin } from '../../redux/User/user.actions';
 
-export default function PublicRoute({ path, component }) {
+export default function PublicRoute({ path, component, location }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
 
   useEffect(() => {
-    if (user?.isLoggedIn) {
-      history.push('/');
-    }
-  }, [history, user]);
+    const checkLoggedIn = async () => {
+      if (!user) {
+        dispatch(checkForLogin());
+      }
+    };
+    checkLoggedIn();
+  }, [history, dispatch, user]);
 
-  return (
+  const { from } = location.state || { from: { pathname: '/' } };
+
+  return user ? (
+    <Redirect to={from} />
+  ) : (
     <div>
       <Route path={path} component={component} />
     </div>

@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../../redux/User/user.actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
   const { isLoginLoading } = useSelector((state) => state.userReducer);
-
-  const history = useHistory();
-  const dispatch = useDispatch();
 
   const submit = async (e) => {
     e.preventDefault();
     try {
       const userBody = { email, password };
       dispatch(loginUser(userBody));
-      history.push('/');
     } catch (err) {
       // const errorMessage =
       //   err?.response?.data?.msg ??
