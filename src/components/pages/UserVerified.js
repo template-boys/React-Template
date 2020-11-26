@@ -21,8 +21,6 @@ export default function UserVerified() {
       }
     };
     verifyUser();
-
-    return;
   }, [slug]);
 
   return (
