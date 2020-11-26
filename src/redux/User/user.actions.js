@@ -29,22 +29,26 @@ export function loginUser(loginBody) {
 export function checkForLogin() {
   return async (dispatch) => {
     let token = localStorage.getItem('auth-token');
-    if (token === null) {
+    if (token === null || token === '') {
       localStorage.setItem('auth-token', '');
       token = '';
-    }
-    let response;
-    try {
-      response = await axios.post(
-        'http://localhost:5000/api/users/ping',
-        null,
-        { headers: { 'x-auth-token': token } }
-      );
-    } catch (error) {}
-    if (response) {
-      dispatch(setUser(response?.data?.user));
-    } else {
       dispatch(logoutUser());
+    } else {
+      let response;
+      try {
+        response = await axios.post(
+          'http://localhost:5000/api/users/ping',
+          null,
+          { headers: { 'x-auth-token': token } }
+        );
+      } catch (error) {
+        dispatch(logoutUser());
+      }
+      if (response) {
+        dispatch(setUser(response?.data?.user));
+      } else {
+        dispatch(logoutUser());
+      }
     }
   };
 }
