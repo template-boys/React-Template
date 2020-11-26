@@ -25,3 +25,23 @@ export function loginUser(loginBody) {
     }
   };
 }
+
+export function authPing() {
+  return async (dispatch) => {
+    let token = localStorage.getItem('auth-token');
+    if (!token) {
+      dispatch(logoutUser());
+    } else {
+      try {
+        const response = await axios.post(
+          'http://localhost:5000/api/users/ping',
+          null,
+          { headers: { 'x-auth-token': token } }
+        );
+        dispatch(setUser(response?.data?.user));
+      } catch (error) {
+        dispatch(logoutUser());
+      }
+    }
+  };
+}
