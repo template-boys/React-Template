@@ -26,7 +26,7 @@ export function loginUser(loginBody) {
   };
 }
 
-export function checkForLogin() {
+export function authPing() {
   return async (dispatch) => {
     let token = localStorage.getItem('auth-token');
     if (!token) {

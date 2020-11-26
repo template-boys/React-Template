@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Redirect, Route, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkForLogin } from '../../redux/User/user.actions';
+import { authPing } from '../../redux/User/user.actions';
 
 export default function AuthorizedRoute({ exact, path, component }) {
   const history = useHistory();
@@ -11,7 +11,7 @@ export default function AuthorizedRoute({ exact, path, component }) {
   useEffect(() => {
     const checkLoggedIn = async () => {
       if (!user) {
-        dispatch(checkForLogin());
+        dispatch(authPing());
       }
     };
     checkLoggedIn();
