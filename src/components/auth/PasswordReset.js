@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function PasswordReset() {
-  const [email, setEmail] = useState();
+  const [, setEmail] = useState();
   const [emailSent, setEmailSent] = useState(false);
 
   const sendPasswordResetEmail = async (e) => {
