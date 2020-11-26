@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../common/Link';
 import { loginUser } from '../../redux/User/user.actions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -37,11 +37,18 @@ export default function Login() {
           type='password'
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Link to='/password_reset'>Forgot Password?</Link>
+        <div className='login-form-links'>
+          <div className='login-form-item'>
+            Don't have an account? <Link to='/register'>Sign up.</Link>
+          </div>
+          <div className='login-form-item'>
+            <Link to='/password_reset'>Forget Password?</Link>
+          </div>
+        </div>
         {isLoginLoading ? (
           <div>Loading...</div>
         ) : (
-          <input type='submit' value='Log in' className='primaryButton' />
+          <input type='submit' value='Log in' className='primary-button' />
         )}
       </form>
     </div>

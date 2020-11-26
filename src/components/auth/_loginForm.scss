@@ -1,3 +1,14 @@
 .login-form {
   margin-top: 20px;
+  max-width: 500px;
+
+  & .login-form-links {
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    & .login-form-item {
+      margin-bottom: 10px;
+      font-size: small;
+    }
+  }
 }
