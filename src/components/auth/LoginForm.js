@@ -2,41 +2,74 @@ import React, { useState } from 'react';
 import Link from '../common/Link';
 import { loginUser } from '../../redux/User/user.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { ErrorMessage, Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 export default function Login() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const { isLoginLoading } = useSelector((state) => state.userReducer);
+  const { isLoginLoading, loginFailed } = useSelector(
+    (state) => state.userReducer
+  );
 
-  const submit = async (e) => {
-    e.preventDefault();
-    try {
-      const userBody = { email, password };
-      dispatch(loginUser(userBody));
-    } catch (err) {
-      // const errorMessage =
-      //   err?.response?.data?.msg ??
-      //   'Sorry, something went wrong. Please try again later.';
-      // setError(errorMessage);
-    }
-  };
+  const loginSchema = Yup.object({
+    email: Yup.string().email('Invalid email address').required('Required'),
+    password: Yup.string().required('Required'),
+  });
 
   return (
-    <div>
-      <form className='form login-form' onSubmit={submit}>
-        <label htmlFor='login-email'>Email</label>
-        <input
-          id='login-email'
-          type='email'
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor='login-password'>Password</label>
-        <input
-          id='login-password'
-          type='password'
-          onChange={(e) => setPassword(e.target.value)}
-        />
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      onSubmit={(formValues) => {
+        try {
+          dispatch(loginUser(formValues));
+        } catch (e) {
+          console.error('Login failed');
+        }
+      }}
+      validationSchema={loginSchema}
+    >
+      <Form className='form login-form'>
+        <Field name='email'>
+          {({ field, form: { touched, errors }, meta }) => (
+            <div className='form-field'>
+              <label className={meta.touched && meta.error ? 'error' : ''}>
+                Email
+              </label>
+              <input
+                className={meta.touched && meta.error ? 'error' : ''}
+                type='text'
+                {...field}
+              />
+              <ErrorMessage name='email'>
+                {(message) => <div className='error'>{message}</div>}
+              </ErrorMessage>
+            </div>
+          )}
+        </Field>
+
+        <Field name='password'>
+          {({ field, form: { touched, errors }, meta }) => (
+            <div className='form-field'>
+              <label className={meta.touched && meta.error ? 'error' : ''}>
+                Password
+              </label>
+              <input
+                className={meta.touched && meta.error ? 'error' : ''}
+                type='password'
+                {...field}
+              />
+              <ErrorMessage name='password'>
+                {(message) => <div className='error'>{message}</div>}
+              </ErrorMessage>
+            </div>
+          )}
+        </Field>
+
+        {loginFailed && <div className='error'>Invalid credentials</div>}
+
         <div className='login-form-links'>
           <div className='login-form-item'>
             Don't have an account? <Link to='/register'>Sign up.</Link>
@@ -50,7 +83,7 @@ export default function Login() {
         ) : (
           <input type='submit' value='Log in' className='primary-button' />
         )}
-      </form>
-    </div>
+      </Form>
+    </Formik>
   );
 }

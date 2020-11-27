@@ -21,7 +21,10 @@ const reducer = (state = INITIAL_STATE, action) => {
     case LOGOUT_SUCCESS:
       return INITIAL_STATE;
     case LOGIN_ERROR:
-      return {};
+      return {
+        ...INITIAL_STATE,
+        loginFailed: true,
+      };
     case LOGIN_REQUEST:
       return {
         ...state,
