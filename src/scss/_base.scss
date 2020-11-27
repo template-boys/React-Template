@@ -61,6 +61,10 @@ ol,
 li,
 div {
   @include theme-aware('color', 'primary-text');
+
+  &.error {
+    @include theme-aware('color', 'error-text');
+  }
 }
 
 /* general */
@@ -80,12 +84,8 @@ body {
 .form label,
 .form input {
   display: block;
-}
-.form input {
-  margin-bottom: 1rem;
-}
-.form label {
   margin-bottom: 0.2rem;
+  margin-top: 0.2rem;
 }
 .form input[type='text'],
 .form input[type='email'],
@@ -98,5 +98,15 @@ body {
   font-size: 1.1rem;
 }
 .form input:focus {
+  outline: none;
+}
+
+label.error {
+  @include theme-aware('color', 'error-text');
+}
+input.error {
+  background-color: #fce4e4 !important;
+  @include theme-aware('border-color', 'error-text');
+  border-width: 1px;
   outline: none;
 }
