@@ -22,7 +22,7 @@ export default function PurePublicRoute({ path, component, location }) {
 
   const { from } = location.state || { from: { pathname: '/' } };
 
-  if (user) {
+  if (!!user) {
     return <Redirect to={from} />;
   } else if (isPinging) {
     return null;
