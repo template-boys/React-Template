@@ -23,11 +23,7 @@ export default function AuthorizedRoute({ exact, path, component }) {
   if (isPinging) {
     return null;
   } else if (!!user) {
-    return (
-      <div>
-        <Route exact={exact} path={path} component={component} />
-      </div>
-    );
+    return <Route exact={exact} path={path} component={component} />;
   } else {
     return (
       <Redirect

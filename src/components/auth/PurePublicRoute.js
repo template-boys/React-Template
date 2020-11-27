@@ -27,10 +27,6 @@ export default function PurePublicRoute({ path, component, location }) {
   } else if (isPinging) {
     return null;
   } else {
-    return (
-      <div>
-        <Route path={path} component={component} />
-      </div>
-    );
+    return <Route path={path} component={component} />;
   }
 }
