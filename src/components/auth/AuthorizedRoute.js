@@ -12,8 +12,9 @@ export default function AuthorizedRoute({ exact, path, component }) {
   useEffect(() => {
     const checkLoggedIn = async () => {
       if (!user) {
-        dispatch(authPing());
-        setIsPinging(false);
+        dispatch(authPing()).then(() => {
+          setIsPinging(false);
+        });
       }
     };
     checkLoggedIn();
