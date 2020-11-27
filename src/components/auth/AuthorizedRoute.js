@@ -25,7 +25,7 @@ export default function AuthorizedRoute({ exact, path, component }) {
   } else if (!!user) {
     return (
       <div>
-        <Route exact={exact} path={path} component={component} />{' '}
+        <Route exact={exact} path={path} component={component} />
       </div>
     );
   } else {
