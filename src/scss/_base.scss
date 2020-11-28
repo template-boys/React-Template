@@ -95,8 +95,7 @@ body {
 .form input[type='password'] {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #c2c2c2;
-  border-radius: 2px;
+  border: 2px solid #c2c2c2;
   background-color: #f0f0f0;
   font-size: 1.1rem;
 }
@@ -104,9 +103,6 @@ body {
   outline: none;
 }
 
-label.error {
-  @include theme-aware('color', 'error-text');
-}
 input.error {
   background-color: #fce4e4 !important;
   @include theme-aware('border-color', 'error-text');

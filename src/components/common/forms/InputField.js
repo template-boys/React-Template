@@ -3,11 +3,7 @@ import { ErrorMessage, Field } from 'formik';
 
 function Label({ label, meta }) {
   if (!!label) {
-    return (
-      <label className={meta.touched && meta.error ? 'error' : ''}>
-        {label}
-      </label>
-    );
+    return <label>{label}</label>;
   } else {
     return null;
   }
@@ -25,7 +21,14 @@ function InputField({ name, label, type }) {
             {...field}
           />
           <ErrorMessage name={name}>
-            {(message) => <div className='error'>{message}</div>}
+            {(message) => (
+              <div
+                style={{ fontSize: 'small', fontStyle: 'italic' }}
+                className='error'
+              >
+                {message}
+              </div>
+            )}
           </ErrorMessage>
         </div>
       )}

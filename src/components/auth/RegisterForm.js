@@ -21,12 +21,14 @@ export default function Register() {
   };
 
   const registerSchema = Yup.object({
-    email: Yup.string().email('Invalid email address').required('Required'),
-    password: Yup.string().required('Required'),
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
+    password: Yup.string().required('Password is required'),
     verifyPassword: Yup.string()
       .required('Required')
       .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-    displayName: Yup.string().required('Required'),
+    displayName: Yup.string().required('Username is required'),
   });
 
   const handleSubmit = async ({ email, password, displayName }) => {
@@ -71,7 +73,7 @@ export default function Register() {
           <Link to='/password_reset'>Forget Password?</Link>
         </div>
       </div>
-      <PrimaryButton type='submit' title='Register' />
+      <PrimaryButton type='submit' title='Register' style={{ width: '100%' }} />
     </Form>
   );
 }

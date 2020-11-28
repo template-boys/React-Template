@@ -55,6 +55,7 @@ export default function Login() {
         isDataLoading={isLoginLoading}
         type='submit'
         title='Log in'
+        style={{ width: '100%' }}
       />
     </Form>
   );
