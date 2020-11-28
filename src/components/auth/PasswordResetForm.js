@@ -31,7 +31,6 @@ export default function PasswordReset() {
       classes='login-form'
     >
       <InputField name='email' label='Email' />
-      <PrimaryButton title='Send' style={{ width: '100%' }} />
       <div className='login-form-links'>
         <div className='login-form-item'>
           Change your mind? <Link to='/login'>Sign in.</Link>
@@ -40,6 +39,7 @@ export default function PasswordReset() {
           Don't have an account? <Link to='/register'>Sign up.</Link>
         </div>
       </div>
+      <PrimaryButton title='Send' style={{ width: '100%' }} />
     </Form>
   );
 }
