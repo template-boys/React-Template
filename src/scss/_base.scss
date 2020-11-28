@@ -22,13 +22,16 @@ ul {
   color: #f3f3f3;
   cursor: pointer;
   padding: 0.4rem 0.8rem;
-  border-radius: 6px;
+  border-radius: 30px;
   background-color: #475ac6;
   min-width: 100px;
   font-size: 1.1rem;
+  outline: none;
   &:hover {
     color: #d6d6d6;
   }
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .secondary-button {
@@ -36,7 +39,7 @@ ul {
   cursor: pointer;
   padding: 0.4rem 0.8rem;
   border: 2px solid #475ac6;
-  border-radius: 6px;
+  border-radius: 30px;
   background-color: transparent;
   min-width: 100px;
   font-size: 1.1rem;
