@@ -1,5 +1,6 @@
 @import './colors';
 @import './mixins';
+
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +24,7 @@ ul {
   cursor: pointer;
   padding: 0.4rem 0.8rem;
   border-radius: 30px;
-  background-color: #475ac6;
+  background-color: $primary;
   min-width: 100px;
   font-size: 1.1rem;
   outline: none;
@@ -38,7 +39,7 @@ ul {
   @include theme-aware('color', 'primary-text');
   cursor: pointer;
   padding: 0.4rem 0.8rem;
-  border: 2px solid #475ac6;
+  border: 2px solid $primary;
   border-radius: 30px;
   background-color: transparent;
   min-width: 100px;

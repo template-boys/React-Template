@@ -8,7 +8,7 @@
 #header .title {
   margin: 0;
   padding: 0 1rem;
-  color: #3490dc;
+  color: $primary;
 }
 #header .auth-options {
   height: 100%;
@@ -17,7 +17,7 @@
 #header .auth-options button {
   padding: 0 1rem;
   background-color: #f3f3f3;
-  color: #3490dc;
+  color: #121212;
   font-size: 1.1rem;
 }
 #header .auth-options button:hover {

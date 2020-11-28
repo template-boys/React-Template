@@ -39,7 +39,11 @@ export default function Login() {
   const dynamicContent = getDynamicContent(match.url);
   return (
     <div className='login-page'>
-      <div className='page-item page-space page-title'>React Template</div>
+      <div className='page-item page-space page-title-container'>
+        <div className='page-title'>peppi.</div>
+        <div className='page-helper-text'>Beautify your Slippi stats</div>
+      </div>
+
       <div className='page-item page-form'>
         <div style={{ marginTop: '1rem', fontSize: '30px' }}>
           {dynamicContent.title}

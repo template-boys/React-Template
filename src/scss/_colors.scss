@@ -1,6 +1,7 @@
+$primary: #8aa899;
 $themes: (
   light: (
-    primary: #475ac6,
+    primary: $primary,
     color-background: #fafafa,
     color-card: #fff,
     primary-text: #121212,
@@ -9,7 +10,7 @@ $themes: (
     error-text: #cc0033,
   ),
   dark: (
-    primary: #475ac6,
+    primary: $primary,
     color-background: #212121,
     color-card: #212121,
     primary-text: #fafafa,
