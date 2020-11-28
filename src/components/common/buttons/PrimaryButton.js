@@ -1,13 +1,8 @@
 import React from 'react';
 
-export default function PrimaryButton({
-  type,
-  isDataLoading,
-  title,
-  customStyle,
-}) {
+export default function PrimaryButton({ isDataLoading, title, ...props }) {
   return (
-    <button type={type} className='primary-button' style={customStyle}>
+    <button className='primary-button' {...props}>
       {isDataLoading ? 'Loading...' : title}
     </button>
   );

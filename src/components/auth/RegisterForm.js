@@ -23,10 +23,9 @@ export default function Register() {
   const registerSchema = Yup.object({
     email: Yup.string().email('Invalid email address').required('Required'),
     password: Yup.string().required('Required'),
-    verifyPassword: Yup.string().oneOf(
-      [Yup.ref('password'), null],
-      'Passwords must match'
-    ),
+    verifyPassword: Yup.string()
+      .required('Required')
+      .oneOf([Yup.ref('password'), null], 'Passwords must match'),
     displayName: Yup.string().required('Required'),
   });
 
