@@ -3,10 +3,13 @@ import { useDispatch } from 'react-redux';
 import LoginForm from '../auth/LoginForm';
 import { toggleTheme } from '../../redux/Settings/settings.actions';
 import RegisterForm from '../auth/RegisterForm';
+import { useRouteMatch } from 'react-router-dom';
 
-export default function Login(props) {
+export default function Login() {
   const dispatch = useDispatch();
-  const isRegistering = props.match.url === '/register';
+  const match = useRouteMatch();
+
+  const isRegistering = match.url === '/register';
 
   const welcomeText = isRegistering ? 'Create an Account' : 'Login';
   const welcomeHelper = isRegistering
