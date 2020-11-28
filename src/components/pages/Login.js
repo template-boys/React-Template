@@ -9,7 +9,7 @@ export default function Login(props) {
   const isRegistering = props.match.url === '/register';
 
   const welcomeText = isRegistering ? 'Create an Account' : 'Login';
-  const wlecomeHelper = isRegistering
+  const welcomeHelper = isRegistering
     ? 'Please fill out your details below.'
     : 'Welcome back! Please login to your account.';
 
@@ -19,7 +19,7 @@ export default function Login(props) {
       <div className='page-item page-form'>
         <div style={{ marginTop: '1rem', fontSize: '30px' }}>{welcomeText}</div>
         <div style={{ marginTop: '1rem', fontSize: '15px' }}>
-          {wlecomeHelper}
+          {welcomeHelper}
         </div>
         {isRegistering ? <RegisterForm /> : <LoginForm />}
         <button
