@@ -1,5 +1,6 @@
 @import './colors';
 @import './mixins';
+
 * {
   margin: 0;
   padding: 0;
@@ -22,21 +23,24 @@ ul {
   color: #f3f3f3;
   cursor: pointer;
   padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  background-color: #475ac6;
+  border-radius: 30px;
+  background-color: $primary;
   min-width: 100px;
   font-size: 1.1rem;
+  outline: none;
   &:hover {
     color: #d6d6d6;
   }
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .secondary-button {
   @include theme-aware('color', 'primary-text');
   cursor: pointer;
   padding: 0.4rem 0.8rem;
-  border: 2px solid #475ac6;
-  border-radius: 6px;
+  border: 2px solid $primary;
+  border-radius: 30px;
   background-color: transparent;
   min-width: 100px;
   font-size: 1.1rem;
@@ -92,8 +96,7 @@ body {
 .form input[type='password'] {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #c2c2c2;
-  border-radius: 2px;
+  border: 2px solid #c2c2c2;
   background-color: #f0f0f0;
   font-size: 1.1rem;
 }
@@ -101,9 +104,6 @@ body {
   outline: none;
 }
 
-label.error {
-  @include theme-aware('color', 'error-text');
-}
 input.error {
   background-color: #fce4e4 !important;
   @include theme-aware('border-color', 'error-text');
