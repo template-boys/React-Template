@@ -1,6 +1,11 @@
 .login-form {
   margin-top: 20px;
   max-width: 500px;
+  @include theme-aware('color', 'primary-text');
+
+  & .form-field {
+    margin-bottom: 1rem;
+  }
 
   & .login-form-links {
     margin-top: 15px;
