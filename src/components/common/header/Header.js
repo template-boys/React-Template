@@ -10,7 +10,7 @@ export default function Header() {
     <header id='header'>
       <Link to='/'>
         <h1 className='title'>
-          pippi <img src={logo} width={25} />
+          peppi <img src={logo} width={25} />
         </h1>
       </Link>
       <AuthOptions />

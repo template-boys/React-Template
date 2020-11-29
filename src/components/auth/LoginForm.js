@@ -48,7 +48,7 @@ export default function Login() {
           Don't have an account? <Link to='/register'>Sign up.</Link>
         </div>
         <div className='login-form-item'>
-          <Link to='/password_reset'>Forget Password?</Link>
+          <Link to='/forgot_password'>Forget Password?</Link>
         </div>
       </div>
       <PrimaryButton

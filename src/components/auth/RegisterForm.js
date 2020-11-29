@@ -70,7 +70,7 @@ export default function Register() {
           Already have an account? <Link to='/login'>Sign in.</Link>
         </div>
         <div className='login-form-item'>
-          <Link to='/password_reset'>Forget Password?</Link>
+          <Link to='/forgot_password'>Forget Password?</Link>
         </div>
       </div>
       <PrimaryButton type='submit' title='Register' style={{ width: '100%' }} />

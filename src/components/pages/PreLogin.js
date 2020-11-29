@@ -4,7 +4,9 @@ import LoginForm from '../auth/LoginForm';
 import { toggleTheme } from '../../redux/Settings/settings.actions';
 import RegisterForm from '../auth/RegisterForm';
 import { useRouteMatch } from 'react-router-dom';
-import PasswordReset from '../auth/PasswordResetForm';
+import ForgotPassword from '../auth/ForgotPassword';
+import Lottie from 'react-lottie';
+import rocketJSON from '../../static/rocket.json';
 
 const getDynamicContent = (url) => {
   let title;
@@ -16,10 +18,8 @@ const getDynamicContent = (url) => {
       title = 'Create an Account';
       form = <RegisterForm />;
       break;
-    case '/password_reset':
-      title = 'Reset Your Password';
-      helper = 'Type your email to recieve a link to change your password.';
-      form = <PasswordReset />;
+    case '/forgot_password':
+      form = <ForgotPassword />;
       break;
     case '/login':
       title = 'Login';
@@ -32,7 +32,16 @@ const getDynamicContent = (url) => {
   return { title, helper, form };
 };
 
-export default function Login() {
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: rocketJSON,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice',
+  },
+};
+
+export default function PreLogin() {
   const dispatch = useDispatch();
   const match = useRouteMatch();
 
@@ -40,8 +49,14 @@ export default function Login() {
   return (
     <div className='login-page'>
       <div className='page-item page-space page-title-container'>
-        <div className='page-title'>peppi.</div>
+        <div className='page-title'>dabr</div>
         <div className='page-helper-text'>Beautify your Slippi stats</div>
+        <Lottie
+          options={defaultOptions}
+          height={300}
+          width={300}
+          style={{ marginTop: '5rem' }}
+        />
       </div>
 
       <div className='page-item page-form'>

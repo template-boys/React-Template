@@ -3,11 +3,17 @@ import { Switch, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Header from './components/common/header/Header';
-import { Home, Login, NotFound, UserVerified } from './components/pages/index';
+import {
+  Home,
+  PreLogin,
+  NotFound,
+  UserVerified,
+} from './components/pages/index';
 import { toggleTheme } from './redux/Settings/settings.actions';
 import AuthorizedRoute from './components/auth/AuthorizedRoute';
 import PurePublicRoute from './components/auth/PurePublicRoute';
 import './style.scss';
+import ResetPassword from './components/pages/ResetPassword';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -22,10 +28,11 @@ export default function App() {
       <Header />
       <Switch>
         <AuthorizedRoute exact path='/' component={Home} />
-        <PurePublicRoute path='/login' component={Login} />
-        <PurePublicRoute path='/register' component={Login} />
+        <PurePublicRoute path='/login' component={PreLogin} />
+        <PurePublicRoute path='/register' component={PreLogin} />
         <Route path='/user_verified/:slug' component={UserVerified} />
-        <Route path='/password_reset' component={Login} />
+        <Route path='/reset_password/:slug' component={ResetPassword} />
+        <Route path='/forgot_password' component={PreLogin} />
         <Route component={NotFound} />
       </Switch>
     </>
