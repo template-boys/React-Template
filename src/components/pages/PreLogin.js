@@ -53,6 +53,7 @@ export default function PreLogin() {
         <div className='page-helper-text'>Beautify your Slippi stats</div>
         <Lottie
           options={defaultOptions}
+          isClickToPauseDisabled
           height={300}
           width={300}
           style={{ marginTop: '5rem' }}
