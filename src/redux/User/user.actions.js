@@ -4,7 +4,7 @@ import {
   LOGOUT_SUCCESS,
   LOGIN_REQUEST,
 } from './user.types';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export const setUser = (user) => ({ type: LOGIN_SUCCESS, payload: user });
 const setLoginError = () => ({ type: LOGIN_ERROR });
@@ -15,8 +15,8 @@ export function loginUser(loginBody) {
   return async (dispatch) => {
     try {
       dispatch(loginLoading());
-      const response = await axios
-        .post('http://localhost:5000/api/users/login', loginBody)
+      const response = await api
+        .post('/users/login', loginBody)
         .then((res) => res.data);
       localStorage.setItem('auth-token', response.token);
       dispatch(setUser(response.user));
@@ -33,11 +33,9 @@ export function authPing() {
       dispatch(logoutUser());
     } else {
       try {
-        const response = await axios.post(
-          'http://localhost:5000/api/users/ping',
-          null,
-          { headers: { 'x-auth-token': token } }
-        );
+        const response = await api.post('/users/ping', null, {
+          headers: { 'x-auth-token': token },
+        });
         dispatch(setUser(response?.data?.user));
       } catch (error) {
         dispatch(logoutUser());

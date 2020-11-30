@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import api from '../../utils/api';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -10,11 +10,9 @@ export default function UserVerified() {
     localStorage.setItem('auth-token', '');
     const verifyUser = async () => {
       try {
-        const verifyRes = await Axios.post(
-          'http://localhost:5000/api/users/verify_user',
-          null,
-          { headers: { 'verification-token': slug } }
-        );
+        const verifyRes = await api.post('/users/verify_user', null, {
+          headers: { 'verification-token': slug },
+        });
         setUserVerified(!!verifyRes?.data?.verified);
       } catch (e) {
         console.log(JSON.stringify(e));
