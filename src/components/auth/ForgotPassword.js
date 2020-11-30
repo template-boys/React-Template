@@ -4,17 +4,14 @@ import PrimaryButton from '../common/buttons/PrimaryButton';
 import * as Yup from 'yup';
 import InputField from '../common/forms/InputField';
 import Link from '../common/Link';
-import Axios from 'axios';
+import api from '../../utils/api';
 
 export default function ForgotPassword() {
   const [emailSent, setEmailSent] = useState(false);
 
   const sendPasswordResetEmail = async (formValues) => {
     try {
-      await Axios.post(
-        'http://localhost:5000/api/users/send_reset_password',
-        formValues
-      );
+      await api.post('/users/send_reset_password', formValues);
     } catch (err) {
       console.error('Password reset email failed');
     }

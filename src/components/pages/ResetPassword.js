@@ -3,7 +3,7 @@ import Form from '../common/forms/Form';
 import InputField from '../common/forms/InputField';
 import PrimaryButton from '../common/buttons/PrimaryButton';
 import * as Yup from 'yup';
-import Axios from 'axios';
+import api from '../../utils/api';
 import { Link, useParams } from 'react-router-dom';
 
 function ResetPassword() {
@@ -13,8 +13,8 @@ function ResetPassword() {
 
   const resetPassword = async ({ newPassword }) => {
     try {
-      await Axios.post(
-        'http://localhost:5000/api/users/reset_password',
+      await api.post(
+        '/users/reset_password',
         { newPassword },
         {
           headers: { 'reset-password-token': slug },

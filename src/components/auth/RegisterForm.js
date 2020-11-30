@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-import Axios from 'axios';
+import api from '../../utils/api';
 import * as Yup from 'yup';
 
 import { setUser } from '../../redux/User/user.actions';
@@ -34,14 +34,11 @@ export default function Register() {
   const handleSubmit = async ({ email, password, displayName }) => {
     try {
       const newUser = { email, password, name: displayName };
-      await Axios.post('http://localhost:5000/api/users/register', newUser);
-      const loginRes = await Axios.post(
-        'http://localhost:5000/api/users/login',
-        {
-          email,
-          password,
-        }
-      );
+      await api.post('/users/register', newUser);
+      const loginRes = await api.post('/users/login', {
+        email,
+        password,
+      });
       dispatch(setUser(loginRes?.data?.user));
       localStorage.setItem('auth-token', loginRes.data.token);
       history.push('/');
