@@ -32,31 +32,42 @@ export default function Login() {
   };
 
   return (
-    <Form
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={loginSchema}
-      classes='login-form'
-    >
-      <InputField name='email' label='Email' />
-      <InputField name='password' label='Password' />
+    <>
+      <Form
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={loginSchema}
+        classes='login-form'
+      >
+        <InputField name='email' label='Email' />
+        <InputField name='password' label='Password' />
 
-      {loginFailed && <div className='error'>Invalid credentials</div>}
+        {loginFailed && <div className='error'>Invalid credentials</div>}
 
-      <div className='login-form-links'>
-        <div className='login-form-item'>
-          Don't have an account? <Link to='/register'>Sign up.</Link>
+        <div className='login-form-links'>
+          <div className='login-form-item'>
+            Don't have an account? <Link to='/register'>Sign up.</Link>
+          </div>
+          <div className='login-form-item'>
+            <Link to='/forgot_password'>Forget Password?</Link>
+          </div>
         </div>
-        <div className='login-form-item'>
-          <Link to='/forgot_password'>Forget Password?</Link>
-        </div>
-      </div>
-      <PrimaryButton
-        isDataLoading={isLoginLoading}
-        type='submit'
-        title='Log in'
-        style={{ width: '100%' }}
-      />
-    </Form>
+        <PrimaryButton
+          isDataLoading={isLoginLoading}
+          type='submit'
+          title='Log in'
+          style={{ width: '100%' }}
+        />
+      </Form>
+      <iframe
+        src='https://clips.twitch.tv/embed?clip=MuddyAwkwardMuleWoofer-itDtGRwR3oIK1gCP&parent=www.example.com'
+        frameborder='0'
+        allowfullscreen='true'
+        scrolling='no'
+        height='378'
+        width='620'
+        title='Clip'
+      ></iframe>
+    </>
   );
 }
