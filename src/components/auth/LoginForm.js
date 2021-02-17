@@ -60,7 +60,7 @@ export default function Login() {
         />
       </Form>
       <iframe
-        src='https://clips.twitch.tv/embed?clip=MuddyAwkwardMuleWoofer-itDtGRwR3oIK1gCP&parent=www.react-redux-temp.herokuapp.com/login'
+        src='https://clips.twitch.tv/embed?clip=MuddyAwkwardMuleWoofer-itDtGRwR3oIK1gCP&parent=react-redux-temp.herokuapp.com/login'
         frameborder='0'
         allowfullscreen='true'
         scrolling='no'
